@@ -1,0 +1,77 @@
+<div fxLayoutAlign="center center">
+  <mat-form-field fxFlex="60%">
+    <input
+      matInput
+      type="text"
+      id="filt"
+      (keyup)="hacerFiltro($any($event).target.value)"
+      placeholder="Ingrese Texto"
+    />
+  </mat-form-field>
+</div>
+
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+  <!-- Position Column -->
+  <ng-container matColumnDef="titulo">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Titulo</th>
+    <td mat-cell *matCellDef="let element">{{ element.titulo }}</td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Descripcion</th>
+    <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="autor">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Autor</th>
+    <td mat-cell *matCellDef="let element">{{ element.autor }}</td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="precio">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Precio</th>
+    <td mat-cell *matCellDef="let element">{{ element.precio }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="desplegarColumnas"></tr>
+  <tr mat-row *matRowDef="let row; columns: desplegarColumnas"></tr>
+</table>
+
+<mat-paginator [length]="100"
+              [pageSize]="2"
+              [pageSizeOptions]="[1, 5, 10, 25, 100]">
+</mat-paginator>
+
+<button mat-fab id="boton-agregar" color="warn" (click)="abrirDialog()">
+  <mat-icon>add</mat-icon>
+</button>
+<!--
+<mat-table [dataSource]="dataSource">
+  <ng-container matColumnDef="titulo">
+    <mat-header-cell *matHeaderCellDef>Titulo</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.titulo }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="description">
+    <mat-header-cell *matHeaderCellDef>Descripción</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.description }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="autor">
+    <mat-header-cell *matHeaderCellDef>Autor</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.autor }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="precio">
+    <mat-header-cell *matHeaderCellDef>Precio</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.precio }}</mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="desplegarColumnas">
+    <mat-row *matRowDef="let row; columns: desplegarColumnas">         
+    </mat-row>
+  </mat-header-row>
+</mat-table>
+-->

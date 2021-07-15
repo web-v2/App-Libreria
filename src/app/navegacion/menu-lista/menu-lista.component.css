@@ -1,0 +1,21 @@
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+a:hover,
+a:active{
+  color: #DBCDE6;
+}
+
+.navegacion-menu{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navegacion-list-label{
+  display: inline-block;
+  padding-left: 6px;
+}
