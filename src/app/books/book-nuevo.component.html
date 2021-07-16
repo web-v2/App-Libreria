@@ -1,0 +1,90 @@
+<form #f="ngForm" (ngSubmit)="guardarLibro(f)">
+  <h2 mat-dialog-title>Agregar Nuevo Libro</h2>
+  <mat-dialog-content>
+    <section
+      fxLayoutAlign="center"
+      style="margin-top: 10px; margin-bottom: 10px"
+    >
+      <mat-card fxFlex="100%">
+        <div
+          fxLayout="column"
+          fxLayoutAlign="center center"
+          fxLayaoutGap="10px"
+        >
+          <mat-form-field style="width: 100%">
+            <mat-label>Ingrese Titulo</mat-label>
+            <input
+              type="text"
+              matInput
+              placeholder="Eje: Libro Galaxias"
+              name="titulo"
+              ngModel
+              required
+            />
+            <mat-error>Debe ingresar un Titulo</mat-error>
+          </mat-form-field>
+
+          <mat-form-field style="width: 100%">
+            <mat-label>Ingrese Descripcion</mat-label>
+            <input
+              type="text"
+              matInput
+              placeholder="Eje: Libro creado en 1879"
+              name="descripcion"
+              ngModel
+              required
+            />
+            <mat-error>Debe ingresar una descripcion</mat-error>
+          </mat-form-field>
+
+          <mat-form-field style="width: 100%">
+            <mat-label>Ingrese Precio</mat-label>
+            <input
+              type="text"
+              matInput
+              placeholder="Eje: 12000"
+              name="precio"
+              ngModel
+              required
+            />
+            <mat-error>Debe ingresar un precio</mat-error>
+          </mat-form-field>
+          <mat-form-field style="width: 100%">
+            <mat-label>Seleccione un autor*</mat-label>
+            <mat-select
+              [(ngModel)]="selectAutor"
+              name="autor"
+              (selectionChange)="selected($event)"
+            >
+              <mat-option
+                *ngFor="let autr of autores"
+                value="autr.autorId"
+                >{{autr.nombre}}</mat-option
+              >
+            </mat-select>
+            <mat-error>Debe ingresar un precio</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Fecha publicación</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              name="fechaPublicacion"
+              [(ngModel)]="fechaPublicacion"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </mat-card>
+    </section>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="true">Cerrar</button>
+    <button mat-button>Guardar</button>
+  </mat-dialog-actions>
+</form>

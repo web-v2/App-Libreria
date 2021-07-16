@@ -1,8 +1,47 @@
-import {Component} from '@angular/core';
+import { OnInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { MatOption } from '@angular/material/core';
+import { MatDatepicker } from '@angular/material/datepicker';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSelectChange } from '@angular/material/select';
+import { Autor } from '../autores/autor.model';
+import { AutoresService } from '../autores/autores.service';
+import { BooksService } from './books.service';
 
 @Component({
     selector: 'app-book-nuevo',
-    template: `<h1 mat-dialog-title>Dialog para agregar Nuevo Libro</h1><mat-dialog-actions><button mat-button [mat-dialog-close]='true'>Cerrar</button></mat-dialog-actions>`
+    templateUrl: 'book-nuevo.component.html'
 })
 
-export class BookNuevoComponent {}
+export class BookNuevoComponent implements OnInit{
+    selectAutor: string;
+    selectAutorTexto: string;
+    fechaPublicacion: string;
+
+    @ViewChild(MatDatepicker) picker: MatDatepicker<Date>;
+    autores: Autor[] = [];
+    constructor(private BookService: BooksService, private dialogref: MatDialog, private autoresService: AutoresService) { }
+
+    ngOnInit(){
+        this.autoresService.obtenerAutores();
+    }
+
+    selected(event: MatSelectChange) {
+        this.selectAutorTexto = (event.source.selected as MatOption).viewValue;
+    }
+    guardarLibro(form: NgForm) {
+        if (form.valid) {
+            this.BookService.guardarLibro({
+                libroId: 1,
+                description: form.value.descripcion,
+                titulo: form.value.titulo,
+                autor: this.selectAutorTexto,
+                precio: form.value.precio,
+                fechaPublicacion: new Date(this.fechaPublicacion)
+            });
+            this.dialogref.closeAll();
+        }
+    }
+
+}

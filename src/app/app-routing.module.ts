@@ -6,7 +6,7 @@ import { LibrosComponent } from './libros/libros.component';
 import { LoginComponent } from './seguridad/login/login.component';
 import { RegistrarComponent } from './seguridad/registrar/registrar.component';
 import { SeguridadRouter } from './seguridad/seguridad.router';
-
+import { AutoresComponent } from './autores/autores.component';
 //, canActivate: [SeguridadRouter]
 const routes: Routes = [
   { path: '', component: LoginComponent, canActivate: [SeguridadRouter] },
@@ -14,7 +14,8 @@ const routes: Routes = [
   { path: 'libros', component: LibrosComponent },
   { path: 'registrar', component: RegistrarComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'books', component: BooksComponent }
+  { path: 'books', component: BooksComponent },
+  { path: 'autores', component: AutoresComponent },
 ];
 
 @NgModule({

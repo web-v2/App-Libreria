@@ -18,8 +18,10 @@ import { BarraComponent } from './navegacion/barra/barra.component';
 import { MenuListaComponent } from './navegacion/menu-lista/menu-lista.component';
 import { SeguridadService } from './seguridad/seguridad.service';
 import { BooksComponent } from './books/books.component';
-import { BooksService } from './books/books.services';
+import { BooksService } from './books/books.service';
 import { BookNuevoComponent } from './books/book-nuevo.component';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { AutoresComponent } from './autores/autores.component';
 
 
 @NgModule({
@@ -34,7 +36,8 @@ import { BookNuevoComponent } from './books/book-nuevo.component';
     BarraComponent,
     MenuListaComponent,
     BooksComponent,
-    BookNuevoComponent
+    BookNuevoComponent,
+    AutoresComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +47,7 @@ import { BookNuevoComponent } from './books/book-nuevo.component';
     MaterialModule,
     FlexLayoutModule
   ],
-  providers: [LibrosService, SeguridadService, BooksService],
+  providers: [LibrosService, SeguridadService, BooksService, { provide: MAT_DATE_LOCALE, useValue: 'es-ES' }],
   bootstrap: [AppComponent],
   entryComponents: [BookNuevoComponent]
 })

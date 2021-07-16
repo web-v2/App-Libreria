@@ -12,27 +12,21 @@
 
 <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
   <!-- Position Column -->
-  <ng-container matColumnDef="titulo">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Titulo</th>
-    <td mat-cell *matCellDef="let element">{{ element.titulo }}</td>
+  <ng-container matColumnDef="nombre">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombres</th>
+    <td mat-cell *matCellDef="let element">{{ element.nombre }}</td>
   </ng-container>
 
   <!-- Name Column -->
-  <ng-container matColumnDef="description">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Descripcion</th>
-    <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+  <ng-container matColumnDef="apellido">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Apellidos</th>
+    <td mat-cell *matCellDef="let element">{{ element.apellido }}</td>
   </ng-container>
 
   <!-- Weight Column -->
-  <ng-container matColumnDef="autor">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Autor</th>
-    <td mat-cell *matCellDef="let element">{{ element.autor }}</td>
-  </ng-container>
-
-  <!-- Symbol Column -->
-  <ng-container matColumnDef="precio">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Precio</th>
-    <td mat-cell *matCellDef="let element">{{ element.precio }}</td>
+  <ng-container matColumnDef="gradoAcademico">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Grado Academico</th>
+    <td mat-cell *matCellDef="let element">{{ element.gradoAcademico }}</td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="desplegarColumnas"></tr>
@@ -47,3 +41,4 @@
 <button mat-fab id="boton-agregar" color="warn" (click)="abrirDialog()">
   <mat-icon>add</mat-icon>
 </button>
+
