@@ -59,7 +59,7 @@
               <mat-option
                 *ngFor="let autr of autores"
                 value="autr.autorId"
-                >{{autr.nombre}}</mat-option
+                >{{autr.nombre +' '+autr.apellido}}</mat-option
               >
             </mat-select>
             <mat-error>Debe ingresar un precio</mat-error>

@@ -1,19 +1,30 @@
 import { Injectable } from '@angular/core';
 import { Autor } from './autor.model';
+import { environment } from './../../environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { Subject } from 'rxjs';
 
 @Injectable({ 
     providedIn: 'root'
  })
 export class AutoresService {
-    private autoresLista: Autor[] = [
-        { autorId: 1, nombre: 'Vaxi', apellido: 'dres', gradoAcademico: 'Ing Soft' },
-        { autorId: 2, nombre: 'Samir', apellido: 'Vergara', gradoAcademico: 'Ing Soft' },
-        { autorId: 3, nombre: 'Fernando', apellido: 'Herrera', gradoAcademico: 'DevOps' },
-        { autorId: 4, nombre: 'Carlos', apellido: 'Azaustre', gradoAcademico: 'Creador Digital' },
-        { autorId: 5, nombre: 'Maria', apellido: 'Romero', gradoAcademico: 'Full Stack' }
-    ];
+    baseUrl = environment.baseUrl;
+    private autoresLista: Autor[] = [];
+
+    private autoresSubject = new Subject<Autor[]>();
+
+    constructor(private http: HttpClient) { }
 
     obtenerAutores(){
-        return this.autoresLista.slice();
+        console.log(this.baseUrl + '/api/LibreriaAutor')
+        this.http.get<Autor[]>(this.baseUrl + '/api/LibreriaAutor').subscribe((data) => {
+            this.autoresLista = data;
+            this.autoresSubject.next([...this.autoresLista]);
+        });
     }
+
+    obtenerActualListener() {
+        return this.autoresSubject.asObservable();
+    }
+
 }
