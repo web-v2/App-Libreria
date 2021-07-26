@@ -49,21 +49,14 @@
             />
             <mat-error>Debe ingresar un precio</mat-error>
           </mat-form-field>
-          <mat-form-field style="width: 100%">
-            <mat-label>Seleccione un autor*</mat-label>
-            <mat-select
-              [(ngModel)]="selectAutor"
-              name="autor"
-              (selectionChange)="selected($event)"
-            >
-              <mat-option
-                *ngFor="let autr of autores"
-                value="autr.autorId"
-                >{{autr.nombre +' '+autr.apellido}}</mat-option
-              >
-            </mat-select>
-            <mat-error>Debe ingresar un precio</mat-error>
-          </mat-form-field>
+
+<mat-form-field style="width: 100%">
+<mat-label>Seleccione un autor*</mat-label>
+<mat-select [(ngModel)]="selectAutor" name="selectAutor" (selectionChange)="selected($event)">
+<mat-option *ngFor="let obj of autores" [value]="obj._id">{{obj.nombre+' '+obj.apellido}}</mat-option>              
+</mat-select>                        
+<mat-error>Debe ingresar un precio</mat-error>
+</mat-form-field>
 
           <mat-form-field appearance="fill">
             <mat-label>Fecha publicación</mat-label>

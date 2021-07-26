@@ -1,22 +1,54 @@
 import { Books } from './books.model';
 import { Subject } from 'rxjs';
+import { environment } from '../../environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { PaginationBooks } from './pagination-books.model';
+import { Injectable } from '@angular/core';
 
+@Injectable({
+    providedIn: 'root'
+})
 export class BooksService {
+    baseUrl = environment.baseUrl;
+    private booksLista: Books[] = [];
+    bookSubject = new Subject();
+    bookPagination: PaginationBooks;
+    bookPaginationSubject = new Subject<PaginationBooks>();
 
-    private booksLista: Books[] = [
-        { libroId: 1, titulo: 'Algoritms', description: 'Ing System', precio: 18000, autor: 'Vaxi L' },
-        { libroId: 2, titulo: 'NodeJs', description: 'Back-end', precio: 25300, autor: 'Samir V2' },
-        { libroId: 3, titulo: 'POO', description: 'Prog Object', precio: 19500, autor: 'Vaxi D' },
-        { libroId: 4, titulo: 'Bases de Datos', description: 'Datasource', precio: 16500, autor: 'Juana Perez' },
-        { libroId: 5, titulo: 'Testing App', description: 'Auditoria Web', precio: 22500, autor: 'Carlos Azaustre' }
-    ];
-    bookSuject = new Subject<Books>();
-    obtenerLibros() {
-        return this.booksLista.slice();
+    constructor(private http: HttpClient) { }
+    
+    obtenerLibros(libroPorPagina: number, paginaActual: number, sort: string, sortDirection: string, filterValue: any): void {
+        const request = {
+            pageSize: libroPorPagina,
+            page: paginaActual,
+            sort,
+            sortDirection,
+            filterValue
+        };
+
+        this.http.post<PaginationBooks>(this.baseUrl + '/api/libro/pagination', request)
+            .subscribe((response) => {
+                this.bookPagination = response;
+                this.bookPaginationSubject.next(this.bookPagination);
+
+            });
+
     }
 
-    guardarLibro(book: Books){
-        this.booksLista.push(book);
-        this.bookSuject.next(book);
+    obtenerActualListener(): any {
+        return this.bookPaginationSubject.asObservable();
     }
+
+    guardarLibro(book: Books): void {
+
+        this.http.post(this.baseUrl + '/api/libro', book)
+            .subscribe((response) => {
+                this.bookSubject.next();
+                console.log(response);
+            });
+    }
+
+    guardarLibroListener(): any {
+        return this.bookSubject.asObservable();
+    }    
 }
