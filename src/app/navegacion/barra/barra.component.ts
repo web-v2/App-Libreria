@@ -28,6 +28,6 @@ constructor(private seguridadServ: SeguridadService) { }
   }
 
   cerrarSesion(){
-    this.seguridadServ.cerrarSesion();
+    this.seguridadServ.salirSesion();
   }
 }

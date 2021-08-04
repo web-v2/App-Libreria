@@ -14,12 +14,10 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void { }
   loginUsuario(form: NgForm){
     if (form.valid) {
-      this.seguridadServices.loginUsuario({
+      this.seguridadServices.login({
         email: form.value.email,
         password: form.value.password    
       });
     }
-    console.log(form.value.email)
-    console.log(form.value.password)
   }
 }

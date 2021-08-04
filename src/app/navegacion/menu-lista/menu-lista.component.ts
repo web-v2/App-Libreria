@@ -23,7 +23,7 @@ export class MenuListaComponent implements OnInit, OnDestroy {
   }
   terminarSesionMenu(){
     this.onCerrarMenu();
-    this.seguridadServ.cerrarSesion();
+    this.seguridadServ.salirSesion();
   }
   ngOnDestroy(){
     this.usuarioSubscription.unsubscribe();
