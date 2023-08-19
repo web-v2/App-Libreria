@@ -1,3 +1,6 @@
+<a href="https://angular.io/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/angularjs-colored.svg" width="300" height="300" alt="Angular" /></a>
+<a href="https://www.typescriptlang.org/" target="_blank"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/typescript-colored.svg" width="300" height="300" alt="TypeScript" /></a>
+
 # MiWebApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.4.
